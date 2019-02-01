@@ -1,0 +1,56 @@
+.isAlive {
+    background-color: #4db6ac;
+  }
+  .wrapper-inputs-size {
+    margin-bottom: 300px; 
+  }
+  .description-position {
+    font-size: 18px;
+  }
+  .waves-effect {
+    margin: 10px;
+  }
+  .description-enter-data {
+    font-size: 18px;
+  }
+  .container {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .start-btn {
+    margin-top: 40px;
+  }
+  .back-home-link {
+    color: #00897b;
+  }
+  table {
+    margin-top: 50px;
+  }
+  tbody {
+    cursor: pointer;
+  }
+  footer {
+    margin-top: 20px;
+  }
+  input {
+    max-width: 400px;
+  }
+  label {
+    font-size: 14px;
+    margin-right: 20px;
+    color: #004d40;
+  }
+  td {
+    border: 1px solid #000;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  li {
+    display: inline-block;
+    margin: 0 10px;
+  }

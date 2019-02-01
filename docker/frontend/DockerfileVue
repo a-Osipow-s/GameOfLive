@@ -1,0 +1,5 @@
+ FROM node:10.14
+ RUN mkdir /client
+ WORKDIR /client
+ RUN npm install -g @vue/cli
+ COPY . /client
