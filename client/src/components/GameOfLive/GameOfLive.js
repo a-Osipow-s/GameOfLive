@@ -40,30 +40,15 @@ export default {
     },
 
     isRequiredField: function(value) {
-      if(value == '') {
-        return false
-      }
-      else {
-        return true
-      }
+      return !(value == '')
     },
 
     isValidInputRange: function(value, maxValue, minValue) {
-      if(value > maxValue || value <= minValue) {
-        return false
-      }
-      else {
-        return true
-      }
+      return !(value > maxValue || value <= minValue) 
     },
 
     isValidInputSymbol: function(value) {
-      if(isNaN(value)) {
-        return false
-      }
-      else {
-        return true
-      }
+      return !(isNaN(value))
     },
 
     isValidData: function(arrayCheckedFields, ) {
@@ -162,6 +147,7 @@ export default {
         width: width,
         height: height
       }).then(function(Response) {
+        console.log(Response.body.last_step)
         setTimeout(()=>{
           this.getNextBoard(url, Response.body.board_next_step, width, height, Response.body.last_step)},
           this.time.value * 1000);
