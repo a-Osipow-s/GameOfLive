@@ -8,17 +8,17 @@ export default {
       visabilityGameField: true,
       startActiveBtn: false,
       width: {
-        value: '',
+        value: 5,
         maxValue: 50,
         minValue: 0
       },
       height: {
-        value: '',
+        value: 5,
         maxValue: 20,
         minValue: 0
       },
       time: {
-        value: '',
+        value: 5,
         maxValue: 10,
         minValue: 0
       }
@@ -162,7 +162,9 @@ export default {
         width: width,
         height: height
       }).then(function(Response) {
-        setTimeout(this.getNextBoard(url, Response.body.board_next_step, width, height, Response.body.last_step),10000);
+        setTimeout(()=>{
+          this.getNextBoard(url, Response.body.board_next_step, width, height, Response.body.last_step)},
+          this.time.value * 1000);
       }).catch(function(error) {
         this.renderError(error.status)
       })
