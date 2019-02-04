@@ -45,7 +45,10 @@ class GameOfLive(APIView):
     def get_board_with_request(board_request):
         board = list(map(tuple, board_request))
         if Validation.is_not_required_game_field(board):
-            return board
+            if Validation.is_valid_coord(list(map(lambda x: len(x), board))):
+                return board
+            else:
+                return False
         else:
             return False
 
@@ -57,12 +60,6 @@ class GameOfLive(APIView):
             return get_size
         else:
             return False
-
-    @staticmethod
-    def get_board(width, height, alive_cons):
-        return [[1 if (i, j) in alive_cons else 0
-                for j in range(width)]
-                for i in range(height)]
 
     @staticmethod
     def get_neighbors(con):
