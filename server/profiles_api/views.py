@@ -6,6 +6,7 @@ from rest_framework import status
 
 from . import serializers
 from .validation import Validation
+from .constant_error_description import ValidationErrorDescription
 
 
 class GameOfLive(APIView):
@@ -14,6 +15,7 @@ class GameOfLive(APIView):
 
     board_array = []
     last_step = False
+    error_description = ""
 
     def post(self, request):
         serializer = serializers.GameOfLiveSerializer(data=request.data)
@@ -28,7 +30,7 @@ class GameOfLive(APIView):
                      'last_step': self.last_step})
             else:
                 return Response(
-                    serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+                    data=self.error_description, status=status.HTTP_400_BAD_REQUEST)
 
         else:
             return Response(
@@ -41,24 +43,25 @@ class GameOfLive(APIView):
         else:
             self.board_array.append(board)
 
-    @staticmethod
-    def get_board_with_request(board_request):
+    def get_board_with_request(self, board_request):
         board = list(map(tuple, board_request))
         if Validation.is_not_required_game_field(board):
             if Validation.is_valid_coord(list(map(lambda x: len(x), board))):
                 return board
             else:
+                self.error_description = ValidationErrorDescription.ERROR_INVALID_BOARD
                 return False
         else:
+            self.error_description = ValidationErrorDescription.ERROR_REQUIRED_BOARD
             return False
 
-    @staticmethod
-    def get_size_with_request(get_size):
+    def get_size_with_request(self, get_size):
         if Validation.is_valid_range(get_size['value'],
                                      get_size['maxValue'],
                                      get_size['minValue']):
             return get_size
         else:
+            self.error_description = ValidationErrorDescription.ERROR_NUMBER_OUT_RANGE
             return False
 
     @staticmethod

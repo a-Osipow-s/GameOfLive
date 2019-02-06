@@ -56,7 +56,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ORIGIN_WHITELIST  =  ( 
-    "http://localhost:8080/" 
+    "http://localhost:8080/"
 )
 
 ROOT_URLCONF = 'profiles_project.urls'

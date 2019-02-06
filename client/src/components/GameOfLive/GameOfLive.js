@@ -137,6 +137,9 @@ export default {
       if(this.aliveCons.length && !lastStep && !this.stopGame) {
         this.postRequest(url, this.aliveCons, width, height)
       }
+      else {
+        this.stopGameOfLive()
+      }
     },
 
     postRequest: function(url, board, width, height) {
@@ -147,7 +150,7 @@ export default {
         width: width,
         height: height
       }).then(function(Response) {
-        console.log(Response.body.last_step)
+        console.log(Response)
         setTimeout(()=>{
           this.getNextBoard(url, Response.body.board_next_step, width, height, Response.body.last_step)},
           this.time.value * 1000);
