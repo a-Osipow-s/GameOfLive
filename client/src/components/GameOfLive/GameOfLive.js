@@ -150,7 +150,6 @@ export default {
         width: width,
         height: height
       }).then(function(Response) {
-        console.log(Response)
         setTimeout(()=>{
           this.getNextBoard(url, Response.body.board_next_step, width, height, Response.body.last_step)},
           this.time.value * 1000);
